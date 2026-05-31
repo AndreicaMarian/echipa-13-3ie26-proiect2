@@ -1,11 +1,16 @@
 import { Link } from 'react-router-dom'
+import { getImageUrl } from '../api/strapi'
+
+const FALLBACK = 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&q=80'
 
 export default function ProductCard({ produs }) {
+  const img = getImageUrl(produs.img) || FALLBACK
+
   return (
     <div className="card group">
       <div className="relative overflow-hidden h-52">
         <img
-          src={produs.img}
+          src={img}
           alt={produs.nume}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />

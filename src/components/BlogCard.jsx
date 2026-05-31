@@ -1,11 +1,16 @@
 import { Link } from 'react-router-dom'
+import { getImageUrl } from '../api/strapi'
+
+const FALLBACK = 'https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=800&q=80'
 
 export default function BlogCard({ articol }) {
+  const img = getImageUrl(articol.img) || FALLBACK
+
   return (
     <article className="card group flex flex-col">
       <div className="relative overflow-hidden h-48">
         <img
-          src={articol.img}
+          src={img}
           alt={articol.titlu}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />

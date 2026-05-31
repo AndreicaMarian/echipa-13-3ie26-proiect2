@@ -1,9 +1,54 @@
+import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { articole } from '../data/mockData'
+import { getArticolBySlug, getArticole, getImageUrl } from '../api/strapi'
+import { Loading } from '../components/States'
+
+const FALLBACK = 'https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=800&q=80'
+
+// Strapi "Rich text (Blocks)" returnează un array de blocuri.
+// Funcția extrage textul din fiecare paragraf.
+function renderContinut(continut) {
+  if (!continut) return null
+  // Dacă e text simplu (string)
+  if (typeof continut === 'string') {
+    return continut.split('\n\n').map((p, i) => (
+      <p key={i} className="font-body text-brown/80 dark:text-cream/80 text-lg leading-relaxed mb-6">{p}</p>
+    ))
+  }
+  // Dacă e array de blocuri (Rich text Blocks)
+  if (Array.isArray(continut)) {
+    return continut.map((bloc, i) => {
+      const text = (bloc.children || []).map(c => c.text).join('')
+      if (!text.trim()) return null
+      return (
+        <p key={i} className="font-body text-brown/80 dark:text-cream/80 text-lg leading-relaxed mb-6">{text}</p>
+      )
+    })
+  }
+  return null
+}
 
 export default function ArticolDet() {
   const { slug } = useParams()
-  const articol = articole.find(a => a.slug === slug)
+  const [articol, setArticol] = useState(null)
+  const [altele, setAltele] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    setLoading(true)
+    getArticolBySlug(slug)
+      .then(async (a) => {
+        setArticol(a)
+        if (a) {
+          const toate = await getArticole()
+          setAltele((toate || []).filter(x => x.id !== a.id).slice(0, 2))
+        }
+      })
+      .catch(err => console.error(err))
+      .finally(() => setLoading(false))
+  }, [slug])
+
+  if (loading) return <main className="pt-24 min-h-screen"><Loading /></main>
 
   if (!articol) return (
     <main className="pt-32 text-center min-h-screen">
@@ -13,13 +58,12 @@ export default function ArticolDet() {
     </main>
   )
 
-  const altele = articole.filter(a => a.id !== articol.id).slice(0, 2)
+  const img = getImageUrl(articol.img) || FALLBACK
 
   return (
     <main className="pt-24 min-h-screen">
-      {/* Hero image */}
       <div className="relative h-72 md:h-[450px] overflow-hidden">
-        <img src={articol.img} alt={articol.titlu} className="w-full h-full object-cover" />
+        <img src={img} alt={articol.titlu} className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-brown/80 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 max-w-4xl mx-auto px-4 pb-10">
           <span className="inline-block bg-warm text-white font-heading text-sm px-3 py-1 rounded-full mb-3">
@@ -30,23 +74,16 @@ export default function ArticolDet() {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 py-12">
-        {/* Meta */}
         <div className="flex flex-wrap items-center gap-4 text-sm font-body text-brown/50 dark:text-cream/40 mb-10 pb-6 border-b border-wheat/40">
           <span>📅 {articol.data}</span>
           <span>✍️ {articol.autor}</span>
           <Link to="/blog" className="ml-auto text-warm hover:text-crust font-semibold">← Înapoi la blog</Link>
         </div>
 
-        {/* Content */}
         <div className="prose max-w-none">
-          {articol.continut.split('\n\n').map((para, i) => (
-            <p key={i} className="font-body text-brown/80 dark:text-cream/80 text-lg leading-relaxed mb-6">
-              {para}
-            </p>
-          ))}
+          {renderContinut(articol.continut)}
         </div>
 
-        {/* Tags */}
         <div className="mt-10 pt-6 border-t border-wheat/40">
           <div className="flex flex-wrap gap-2">
             {['Artizanal', 'Rețete', articol.categorie].map(tag => (
@@ -57,22 +94,24 @@ export default function ArticolDet() {
           </div>
         </div>
 
-        {/* Other articles */}
         {altele.length > 0 && (
           <div className="mt-16">
             <h2 className="font-heading font-bold text-2xl text-brown dark:text-cream mb-6">Mai citește</h2>
             <div className="grid md:grid-cols-2 gap-6">
-              {altele.map(a => (
-                <Link key={a.id} to={`/blog/${a.slug}`} className="card flex gap-4 p-4 group">
-                  <img src={a.img} alt={a.titlu} className="w-24 h-24 object-cover rounded-xl flex-shrink-0" />
-                  <div>
-                    <span className="text-xs font-body text-brown/40 dark:text-cream/40">{a.data}</span>
-                    <h3 className="font-heading font-bold text-brown dark:text-cream text-sm group-hover:text-warm transition-colors">
-                      {a.titlu}
-                    </h3>
-                  </div>
-                </Link>
-              ))}
+              {altele.map(a => {
+                const aImg = getImageUrl(a.img) || FALLBACK
+                return (
+                  <Link key={a.id} to={`/blog/${a.slug}`} className="card flex gap-4 p-4 group">
+                    <img src={aImg} alt={a.titlu} className="w-24 h-24 object-cover rounded-xl flex-shrink-0" />
+                    <div>
+                      <span className="text-xs font-body text-brown/40 dark:text-cream/40">{a.data}</span>
+                      <h3 className="font-heading font-bold text-brown dark:text-cream text-sm group-hover:text-warm transition-colors">
+                        {a.titlu}
+                      </h3>
+                    </div>
+                  </Link>
+                )
+              })}
             </div>
           </div>
         )}

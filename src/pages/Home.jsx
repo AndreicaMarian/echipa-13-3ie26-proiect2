@@ -1,9 +1,23 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { produse, categorii, articole } from '../data/mockData'
+import { categorii } from '../data/staticData'
+import { getProduse, getArticole } from '../api/strapi'
 import ProductCard from '../components/ProductCard'
 import BlogCard from '../components/BlogCard'
+import { Loading } from '../components/States'
 
 export default function Home() {
+  const [produse, setProduse] = useState([])
+  const [articole, setArticole] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    Promise.all([getProduse(), getArticole()])
+      .then(([p, a]) => { setProduse(p || []); setArticole(a || []) })
+      .catch(err => console.error(err))
+      .finally(() => setLoading(false))
+  }, [])
+
   const featured = produse.filter(p => p.featured).slice(0, 4)
   const latestPosts = articole.slice(0, 2)
 
@@ -39,7 +53,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 animate-bounce text-2xl">↓</div>
       </section>
 
@@ -90,9 +103,11 @@ export default function Home() {
               Vezi toate →
             </Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featured.map(p => <ProductCard key={p.id} produs={p} />)}
-          </div>
+          {loading ? <Loading /> : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {featured.map(p => <ProductCard key={p.id} produs={p} />)}
+            </div>
+          )}
           <div className="text-center mt-8 md:hidden">
             <Link to="/produse" className="btn-outline">Vezi toate produsele →</Link>
           </div>
@@ -146,9 +161,11 @@ export default function Home() {
             </div>
             <Link to="/blog" className="btn-outline hidden md:inline-flex">Toate articolele →</Link>
           </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            {latestPosts.map(a => <BlogCard key={a.id} articol={a} />)}
-          </div>
+          {loading ? <Loading /> : (
+            <div className="grid md:grid-cols-2 gap-8">
+              {latestPosts.map(a => <BlogCard key={a.id} articol={a} />)}
+            </div>
+          )}
         </div>
       </section>
 
