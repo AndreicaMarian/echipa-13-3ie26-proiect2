@@ -65,17 +65,13 @@ Site de prezentare pentru o brutărie artizanală din Timișoara, realizat cu **
 ## 🚀 Rulare locală
 
 ```bash
-# Clonare repository
 git clone https://github.com/echipa-XX-3ie26/echipa-00-3ie26-proiect2.git
 cd echipa-00-3ie26-proiect2
 
-# Instalare dependențe
 npm install
 
-# Pornire server development
 npm run dev
 
-# Build pentru producție
 npm run build
 ```
 
