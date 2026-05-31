@@ -55,27 +55,23 @@ Site de prezentare pentru o brutărie artizanală din Timișoara, realizat cu **
 
 | Membru | Sarcini |
 |---|---|
-| **[Nume 1]** | Setup GitHub, structură proiect, configurare Vite + Tailwind, pagina Home |
-| **[Nume 2]** | Pagina Produse (listă + detalii), componenta ProductCard |
-| **[Nume 3]** | Pagina Blog (listă + detalii), componenta BlogCard |
-| **[Nume 4]** | Pagina Despre, pagina Contact, configurare Strapi + integrare API |
+| **Andreica Marian** | Setup GitHub, structură proiect, configurare Vite + Tailwind, pagina Home |
+| **Avram Andrei** | Pagina Produse (listă + detalii), componenta ProductCard |
+| **Botan Denis** | Pagina Blog (listă + detalii), componenta BlogCard |
+| **Boldiszar Denis** | Pagina Despre, pagina Contact, configurare Strapi + integrare API |
 
 ---
 
 ## 🚀 Rulare locală
 
 ```bash
-# Clonare repository
 git clone https://github.com/echipa-XX-3ie26/echipa-00-3ie26-proiect2.git
 cd echipa-00-3ie26-proiect2
 
-# Instalare dependențe
 npm install
 
-# Pornire server development
 npm run dev
 
-# Build pentru producție
 npm run build
 ```
 
