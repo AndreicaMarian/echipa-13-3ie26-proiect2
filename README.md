@@ -55,10 +55,10 @@ Site de prezentare pentru o brutărie artizanală din Timișoara, realizat cu **
 
 | Membru | Sarcini |
 |---|---|
-| **[Nume 1]** | Setup GitHub, structură proiect, configurare Vite + Tailwind, pagina Home |
-| **[Nume 2]** | Pagina Produse (listă + detalii), componenta ProductCard |
-| **[Nume 3]** | Pagina Blog (listă + detalii), componenta BlogCard |
-| **[Nume 4]** | Pagina Despre, pagina Contact, configurare Strapi + integrare API |
+| **Andreica Marian** | Setup GitHub, structură proiect, configurare Vite + Tailwind, pagina Home |
+| **Avram Andrei** | Pagina Produse (listă + detalii), componenta ProductCard |
+| **Botan Denis** | Pagina Blog (listă + detalii), componenta BlogCard |
+| **Boldiszar Denis** | Pagina Despre, pagina Contact, configurare Strapi + integrare API |
 
 ---
 
