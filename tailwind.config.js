@@ -5,9 +5,11 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: ['"Playfair Display"', 'serif'],   // font 1 - titluri principale
-        heading: ['"Lora"', 'serif'],               // font 2 - subtitluri/headings
-        body: ['"Source Sans 3"', 'sans-serif'],    // font 3 - text body
+        // Fonturi din tema Amber Minimal (tweakcn)
+        display: ['"Source Serif 4"', 'serif'],  // Serif - titluri principale
+        heading: ['"Source Serif 4"', 'serif'],  // Serif - subtitluri/headings
+        body: ['"Inter"', 'sans-serif'],          // Sans-Serif - text body
+        mono: ['"JetBrains Mono"', 'monospace'],  // Mono
       },
       colors: {
         cream:  { DEFAULT: '#FDF6EC', dark: '#F5E6D0' },
