@@ -85,7 +85,7 @@ npm run build
 
 ## 📚 Surse și Inspirație
 
-- [Unsplash](https://unsplash.com) – imagini produse și articole
+- [Unsplash](https://unsplash.com) – imagini produse și articole;
 - [tweakcn.com](https://tweakcn.com) – temă **Amber Minimal** (tipografie și culori)
 - [Google Fonts](https://fonts.google.com) – fonturi web
 - [React Router Docs](https://reactrouter.com)
