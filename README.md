@@ -63,7 +63,7 @@ Echipa 13 · 3IE26 · Web Design 2026
 | **Andreica Marian** (lider) | Coordonare proiect, crearea și administrarea **repository-ului GitHub** (collaborators, sincronizare), configurarea și deploy-ul **backend-ului Strapi Cloud** (Content Types, permisiuni, transfer date), **integrarea** React ↔ Strapi (apeluri API), configurarea și deploy-ul pe **Netlify** (build, variabile de mediu, domeniu). |
 | **Avram Andrei** | Realizarea **paginii Produse** și a paginii de detaliu produs, selectarea **imaginilor** pentru produse, redactarea **descrierilor** și a textelor pentru pâine și produse de panificație. |
 | **Botan Denis** | Realizarea **paginii Blog** și a paginii de detaliu articol, scrierea **articolelor/rețetelor** (conținut real), selectarea **imaginilor** pentru blog. |
-| **Boldiszar Denis** | Realizarea **paginii Despre Noi** și a paginii **Contact**, redactarea **poveștii brutăriei**, a misiunii și a valorilor, selectarea **imaginilor** și a textelor de prezentare. |
+| **Boldizsar Denis** | Realizarea **paginii Despre Noi** și a paginii **Contact**, redactarea **poveștii brutăriei**, a misiunii și a valorilor, selectarea **imaginilor** și a textelor de prezentare. |
 
 ---
 
