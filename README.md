@@ -92,7 +92,3 @@ npm run build
 - [Tailwind CSS Docs](https://tailwindcss.com)
 - [Strapi 5 Docs](https://docs.strapi.io)
 - Laboratoarele L02, L05, L06 – instrucțiuni și materiale proiect
-
----
-
-© 2026 Brutăria Artizanală · Echipa 13 · Proiect realizat în cadrul cursului Web Design
