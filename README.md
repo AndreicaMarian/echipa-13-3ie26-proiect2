@@ -56,7 +56,7 @@ Echipa 13 · 3IE26 · Web Design 2026
 
 ---
 
-## 👥 Echipa și Contribuții
+## 👥 Echipa și Contribuții 
 
 | Membru | Sarcini și atribuții |
 |---|---|
