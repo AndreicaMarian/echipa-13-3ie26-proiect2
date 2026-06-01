@@ -75,7 +75,6 @@ cd echipa-13-3ie26-proiect2
 
 npm install
 
-# VITE_STRAPI_URL=https://joyful-darling-9136fa5c2d.strapiapp.com
 
 npm run dev
 
@@ -93,8 +92,6 @@ npm run build
 - [Tailwind CSS Docs](https://tailwindcss.com)
 - [Strapi 5 Docs](https://docs.strapi.io)
 - Laboratoarele L02, L05, L06 – instrucțiuni și materiale proiect
-
-> Model de inspirație: nu am folosit un model/șablon de site existent. Design-ul a fost realizat pe baza cerințelor proiectului și a temei alese (brutărie artizanală), folosind paleta de culori a temei Amber Minimal de la tweakcn.
 
 ---
 
